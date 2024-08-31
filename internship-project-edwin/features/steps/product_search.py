@@ -3,30 +3,31 @@ from behave import given, when, then
 from time import sleep
 
 
-SEARCH_INPUT = (By.NAME, 'q')
-SEARCH_SUBMIT = (By.NAME, 'btnK')
+@given('Open the main page.')
+def open_reely_log_in(context):
+    context.app.main_page.open_reely()
 
 
-@given('Open Google page')
-def open_google(context):
-    context.driver.get('https://www.google.com/')
+@when('Log in to the page.')
+def user_log_in(context):
+    context.app.main_page.login_reely()
 
 
-@when('Input {search_word} into search field')
-def input_search(context, search_word):
-    search = context.driver.find_element(*SEARCH_INPUT)
-    search.clear()
-    search.send_keys(search_word)
-    sleep(4)
+@when('Click on “off plan” at the left side menu.')
+def open_off_plan(context):
+    context.app.main_page.click_off_plan()
 
 
-@when('Click on search icon')
-def click_search_icon(context):
-    context.driver.find_element(*SEARCH_SUBMIT).click()
-    sleep(1)
+@then('Verify the right page opens.')
+def verify_off_plan_open(context):
+    context.app.off_plan.verify_off_plan_page()
 
 
-@then('Product results for {search_word} are shown')
-def verify_found_results_text(context, search_word):
-    assert search_word.lower() in context.driver.current_url.lower(), \
-        f'Expected query not in {context.driver.current_url.lower()}'
+@then('Filter by sale status of “Future Launch”.')
+def filter_for_future(context):
+    context.app.off_plan.filter_for_future_launch()
+
+
+@then('Verify each product contains the Future Launch tag.')
+def verify_future_tags(context):
+    context.app.off_plan.verify_future_launch_tags()
