@@ -13,11 +13,6 @@ def user_log_in(context):
     context.app.main_page.login_reely()
 
 
-@when('Click on “off plan” at the left side menu.')
-def open_off_plan(context):
-    context.app.main_page.click_off_plan()
-
-
 @then('Verify the right page opens.')
 def verify_off_plan_open(context):
     context.app.off_plan.verify_off_plan_page()

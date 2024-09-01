@@ -1,5 +1,6 @@
 from all_pages.base_page import Page
 from selenium.webdriver.common.by import By
+from time import sleep
 
 
 class OffPlan(Page):
@@ -14,7 +15,10 @@ class OffPlan(Page):
         self.driver.find_element(*self.off_plan_sign)
 
     def filter_for_future_launch(self):
+        sleep(3)
         self.wait_and_click(*self.filter_btn)
+        sleep(6)
+
         self.wait_and_click(*self.filter_choice_btn)
         self.wait_and_click(*self.future_choice)
         self.wait_and_click(*self.apply_filter_btn)
