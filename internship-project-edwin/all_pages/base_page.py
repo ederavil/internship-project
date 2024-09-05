@@ -29,6 +29,12 @@ class Page:
 
     def wait_and_click(self, *locator):
         self.wait.until(
-            EC.element_to_be_clickable(locator),
+            EC.element_to_be_clickable(*locator),
             message=f'Element by locator {locator} not clickable'
         ).click()
+
+    def wait_until_clickable(self, *locator):
+        self.wait.until(
+            EC.element_to_be_clickable(*locator),
+            message=f'Element by locator {locator} not clickable'
+        )

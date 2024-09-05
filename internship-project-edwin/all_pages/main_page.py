@@ -8,7 +8,6 @@ class MainPage(Page):
     log_btn = (By.CSS_SELECTOR, '[class="login-button w-button"]')
     off_plan_btn = (By.XPATH, '//div[text()="Off-plan"]')
 
-
     def open_reely(self):
         self.open_url('https://soft.reelly.io/sign-in')
 
