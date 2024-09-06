@@ -1,5 +1,6 @@
 from all_pages.base_page import Page
 from selenium.webdriver.common.by import By
+from time import sleep
 
 
 class MainPage(Page):
@@ -12,6 +13,7 @@ class MainPage(Page):
         self.open_url('https://soft.reelly.io/sign-in')
 
     def login_reely(self):
+        sleep(5)
         user_log = 'edwinjenell@gmail.com'
         pass_log = 'Edupunk67'
         self.input_text(user_log, *self.user_field)
