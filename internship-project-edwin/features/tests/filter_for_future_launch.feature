@@ -1,3 +1,4 @@
+@reported_test
 Feature: Test Scenarios for Filter functionality
 
   Scenario: User can filter by sale status Future Launch.
