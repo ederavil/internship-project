@@ -21,7 +21,6 @@ def browser_init(context, scenario_name):
     # service = Service(driver_path)
     # context.driver = webdriver.Chrome(service=service)
 
-
     ### HEADLESS MODE ####
     # driver_path = GeckoDriverManager().install()
     # options = webdriver.FirefoxOptions()
@@ -33,27 +32,40 @@ def browser_init(context, scenario_name):
     # )
 
     ### BROWSERSTACK ###
-    bs_user = 'edwinderavil_9QAIl7'
-    bs_key = 'JzfDmfVePgvjWQ7YJmLy'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # bs_user = 'edwinderavil_9QAIl7'
+    # bs_key = 'JzfDmfVePgvjWQ7YJmLy'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    #
+    # options = Options()
+    # bstack_options = {
+    # #     "os": "Windows",
+    # #     "osVersion": "10",
+    # #     'browserName': 'Firefox',
+    # #     'browserVersion': '128.0',
+    # #     'sessionName': scenario_name
+    #       #Mobile
+    #     "deviceName": "Samsung Galaxy Note 20 Ultra",
+    #     "osVersion": "10.0",
+    #     'browserName': 'chrome',
+    #     'deviceOrientation': 'portrait'
+    # }
+    # options.set_capability('bstack:options', bstack_options)
+    # context.driver = webdriver.Remote(command_executor=url, options=options)
+    # # context.driver.maximize_window()
+    # context.driver.implicitly_wait(5)
+    # context.driver.wait = WebDriverWait(context.driver, 15)
 
-    options = Options()
-    bstack_options = {
-        "os": "Windows",
-        "osVersion": "11",
-        'browserName': 'Firefox',
-        'browserVersion': '128.0',
-        'sessionName': scenario_name
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+    #Mobile Testing
+    mobile_emulation = {"deviceName": "Galaxy Note 3"}
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
+    driver_path = ChromeDriverManager().install()
+    service = Service(driver_path)
+    context.driver = webdriver.Chrome(service=service, options=chrome_options)
+
     context.driver.maximize_window()
     context.driver.implicitly_wait(5)
     context.driver.wait = WebDriverWait(context.driver, 15)
-
-    # context.driver.maximize_window()
-    # context.driver.implicitly_wait(5)
-    # context.driver.wait = WebDriverWait(context.driver, 15)
 
     context.app = Application(context.driver)
 
